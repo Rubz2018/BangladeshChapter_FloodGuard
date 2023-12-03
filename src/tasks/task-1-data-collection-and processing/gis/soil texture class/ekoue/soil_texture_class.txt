@@ -1,0 +1,175 @@
+/*
+ source: https://developers.google.com/earth-engine/datasets/catalog/OpenLandMap_SOL_SOL_TEXTURE-CLASS_USDA-TT_M_v02#description
+
+ code snapshot: https://code.earthengine.google.com/b64b579be4fbe1f8926eeaf34c422b0d
+
+*/
+// ============ Import country boundaries feature collection ============
+var world_dataset = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017");
+print("world_dataset")
+print(world_dataset)
+
+var adminitrative_units_dataset = ee.FeatureCollection("FAO/GAUL/2015/level2") //https://developers.google.com/earth-engine/datasets/catalog/FAO_GAUL_2015_level2
+print("adminitrative_units_dataset")
+print(adminitrative_units_dataset.toList(20).get(10))
+
+// Apply filter where country name equals Uganda.
+var country = "Bangladesh";
+//var area_of_interest = world_dataset.filter(ee.Filter.eq("country_na", country));
+var area_of_interest = adminitrative_units_dataset.filter(ee.Filter.eq("ADM0_NAME", country))
+
+// Print new "area_of_interest" object and explorer features and properties.
+// There should only be one feature representing Uganda.
+print("area_of_interest");
+print(area_of_interest);
+
+// // Add the area of interst outline to the Map as a layer.
+// Map.centerObject(area_of_interest, 6);
+// Map.addLayer(area_of_interest);
+
+
+// ============ Import soil texture data ===========
+var soil_texture_dataset = ee.Image("OpenLandMap/SOL/SOL_TEXTURE-CLASS_USDA-TT_M/v02");
+print("soil_texture_dataset")
+print(soil_texture_dataset)
+
+var soil_texture_dataset_resolution=250 // meters
+
+// clip the dataset to the area of our study
+// soil_texture_dataset = soil_texture_dataset.clip(area_of_interest)
+
+
+var soil_texture_bands= ["b0","b10","b30","b60","b100","b200"] // ee.List(["b0","b10","b30","b60","b100","b200"])
+print("soil_texture_bands")
+print(soil_texture_bands)
+var soil_texture_bands_count=6
+
+
+var visualization = {
+  bands: soil_texture_bands[0],  //soil_texture_bands.get(0), //["b0"],
+  min: 1.0,
+  max: 12.0,
+  palette: [
+    'd5c36b','b96947','9d3706','ae868f','f86714','46d143',
+    '368f20','3e5a14','ffd557','fff72e','ff5a9d','ff005b',
+  ]
+};
+
+// Map.centerObject(soil_texture_dataset);
+
+Map.addLayer(soil_texture_dataset, visualization, 'Soil texture class (USDA system)');
+
+Map.centerObject(area_of_interest, 6);
+Map.addLayer(area_of_interest);
+
+
+// ============ get soil texture data for all districts ===========
+// Get districts as a list
+var districts = area_of_interest.aggregate_array("ADM2_NAME") //.distinct()
+print("districts")
+print(districts)
+print("districts count")
+print(districts.length()) // result: 64
+var districts_count = 64
+
+var merged_soil_texture_class = ee.FeatureCollection([])
+
+for(var i=0; i<districts_count; i++){ //loop over the districts
+  var district_name = districts.get(i)
+  var district_dataset = area_of_interest.filter(ee.Filter.eq("ADM2_NAME", district_name))
+  print("district_dataset")
+  print(district_dataset)
+        
+  var district_geometry=district_dataset.geometry()
+    
+    
+  // var soil_texture_band_ = soil_texture_dataset //.select("b0")
+  // print("soil_texture_band_")
+  // print(soil_texture_band_)
+    
+  // get mean value of each soil band in the disctrict
+  var mean_value = soil_texture_dataset.reduceRegion({
+  reducer :ee.Reducer.mean(),
+    geometry :district_geometry,
+    scale : soil_texture_dataset_resolution,
+    maxPixels:1e13
+  })
+  print("mean_value")
+  print(mean_value)
+  print("mean_value.get('b0')")
+  print(mean_value.get("b0"))
+    
+  // get std value of each soil band in the disctrict
+  var std_value = soil_texture_dataset.reduceRegion({
+    reducer :ee.Reducer.stdDev(),
+    geometry :district_geometry,
+    scale : soil_texture_dataset_resolution,
+    maxPixels:1e13
+  })
+  print("std_value")
+  print(std_value)
+  
+  var soil_texture_class = ee.Feature(district_geometry, {
+    
+    //setting bands data
+    b0_mean_value: mean_value.get("b0"),
+    b0_std_value: std_value.get("b0"),
+    b10_mean_value: mean_value.get("b10"),
+    b10_std_value: std_value.get("b10"),
+    b30_mean_value: mean_value.get("b30"),
+    b30_std_value: std_value.get("b30"),
+    b60_mean_value: mean_value.get("b60"),
+    b60_std_value: std_value.get("b60"),
+    b100_mean_value: mean_value.get("b100"),
+    b100_std_value: std_value.get("b100"),
+    b200_mean_value: mean_value.get("b200"),
+    b200_std_value: std_value.get("b200"),
+    
+    
+      // value: stats.get("LST_Night_1km"), 
+      // hourStart: img.get('system:time_start'),
+      // hourEnd : img.get('system:time_end'),
+      // date: img.get('system:index'),
+      
+      
+      
+      //setting district infos
+      adm0_code: district_dataset.first().get("ADM0_CODE"),
+      adm0_name: district_dataset.first().get("ADM0_NAME"),
+      adm1_code: district_dataset.first().get("ADM1_CODE"),
+      adm1_name: district_dataset.first().get("ADM1_NAME"),
+      adm2_code: district_dataset.first().get("ADM2_CODE"),
+      adm2_name: district_dataset.first().get("ADM2_NAME"),
+      disp_area: district_dataset.first().get("DISP_AREA"),
+      exp2_year: district_dataset.first().get("EXP2_YEAR"),
+      status: district_dataset.first().get("STATUS"),
+      str2_year: district_dataset.first().get("STR2_YEAR"),
+      shape_area: district_dataset.first().get("Shape_Area"),
+      shape_leng: district_dataset.first().get("Shape_Leng"),
+    
+      
+  });
+  print("soil_texture_class",soil_texture_class);
+  
+  //merge current (district) FeatureCollection to the whole (for all districts) 
+  merged_soil_texture_class = merged_soil_texture_class.merge(soil_texture_class)
+  
+  // if(i==1)
+  //   break
+  
+}
+
+print("merged_soil_texture_class",merged_soil_texture_class)
+
+
+Export.table.toDrive({
+    collection: merged_soil_texture_class,
+    folder: "Omdena/floodguard",
+    fileNamePrefix: "Bangladesh--Soil_Texture_Class",
+    description: "Bangladesh--Soil_Texture_Class",
+    fileFormat: "CSV"
+});
+
+
+// Map.centerObject(area_of_interest, 6);
+// Map.addLayer(area_of_interest);

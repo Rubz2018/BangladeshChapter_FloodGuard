@@ -1,0 +1,10 @@
+omdena-floodguard--EvalModel
+===========================
+
+This step failed. For more information, view the logs
+
+ClientError: Cannot access S3 key: omdena-floodguard/v1/output/evaluation/evaluation.json.
+
+============================
+https://intellipaat.com/community/41744/using-boto3-how-can-i-create-a-folder-inside-s3
+

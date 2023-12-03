@@ -1,0 +1,326 @@
+/*
+  sources:
+    https://developers.google.com/earth-engine/tutorials/community/ph-ug-temp
+	
+  code snipshot in gee: https://code.earthengine.google.com/43bd095b733e53e89bc294e2e2a5016b
+*/ 
+
+/* ========== 1. Define the border of Uganda as a feature ===========*/
+// Import country boundaries feature collection.
+var world_dataset = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017");
+print("world_dataset")
+print(world_dataset)
+
+var adminitrative_units_dataset = ee.FeatureCollection("FAO/GAUL/2015/level2") //https://developers.google.com/earth-engine/datasets/catalog/FAO_GAUL_2015_level2
+print("adminitrative_units_dataset")
+print(adminitrative_units_dataset.toList(20).get(10))
+
+// Apply filter where country name equals Uganda.
+var country = "Bangladesh";
+//var area_of_interest = world_dataset.filter(ee.Filter.eq("country_na", country));
+var area_of_interest = adminitrative_units_dataset.filter(ee.Filter.eq("ADM0_NAME", country))
+
+// Print new "area_of_interest" object and explorer features and properties.
+// There should only be one feature representing Uganda.
+print("area_of_interest");
+print(area_of_interest);
+
+// Add the area of interst outline to the Map as a layer.
+Map.centerObject(area_of_interest, 6);
+Map.addLayer(area_of_interest);
+
+/* ========== 2. Import land surface temperature data ===========*/
+// Import LST image collection.
+var modis_dataset = ee.ImageCollection("MODIS/MOD11A2");
+var start_date="2013-01-01", end_date="2023-10-20"
+print("start_date")
+print(start_date)
+
+print("end_date")
+print(end_date)
+
+
+// Filter the LST collection to include only images intersecting the desired
+// date range.
+
+var mod11a2 = modis_dataset.filter(ee.Filter.date(start_date, end_date));
+print("mod11a2")
+print(mod11a2)
+/*print('mod11a2["LST_Day_1km"]')
+print(mod11a2.select("LST_Day_1km").mean())*/
+
+/*var mod11a2_clipped = mod11a2.filterBounds(area_of_interest)
+print("mod11a2_clipped")
+print(mod11a2_clipped.getInfo())*/
+
+var modis_dataset_resolution=1000 // meters, info from https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD11A2#bands
+
+
+// Select only the 1km day LST data band.
+var modLSTday = mod11a2.select("LST_Day_1km")
+var modLSTnight = mod11a2.select("LST_Night_1km")
+
+/* ========== 3. Define a function to convert temperature units ===========*/
+// Extract band Scale to Kelvin and convert to Celsius, set image acquisition time.
+var modLSTc = modLSTday.map(function(img) {
+  return img
+    .multiply(0.02) // convert to Kelvin
+    .subtract(273.15) // convert to Celsius
+    .copyProperties(img, ['system:time_start']); // adding acquisition time
+});
+
+print("modLSTc")
+print(modLSTc)
+
+var modLSTc2 = modLSTnight.map(function(img) {
+  return img
+    .multiply(0.02) // convert to Kelvin
+    .subtract(273.15) // convert to Celsius
+    .copyProperties(img, ['system:time_start']); // adding acquisition time
+});
+
+
+/* ========== 4. Chart land surface temperature as a time series ===========*/
+// Chart time series of LST for Uganda in 2015.
+var ts1 = ui.Chart.image.series({
+  imageCollection: modLSTc,
+  region: area_of_interest,
+  reducer: ee.Reducer.mean(),
+  scale: modis_dataset_resolution, //1000,
+  xProperty: 'system:time_start'})
+  .setOptions({
+     title: 'LST 2015 Time Series',
+     vAxis: {title: 'LST Celsius'}});
+     
+print("ts1");
+print(ts1);
+
+/* ========== 5. Visualize temperature data on the map ===========*/
+// Calculate 8-day mean temperature for Uganda in 2015.
+var clippedLSTc = modLSTc.mean().clip(area_of_interest);
+var clippedLSTc2 = modLSTc2.mean().clip(area_of_interest);
+
+var landSurfaceTemperatureVis = {
+  min: 20, //13000.0,
+  max: 40, //16500.0,
+  palette: [
+    '040274', '040281', '0502a3', '0502b8', '0502ce', '0502e6',
+    '0602ff', '235cb1', '307ef3', '269db1', '30c8e2', '32d3ef',
+    '3be285', '3ff38f', '86e26f', '3ae237', 'b5e22e', 'd6e21f',
+    'fff705', 'ffd611', 'ffb613', 'ff8b13', 'ff6e08', 'ff500d',
+    'ff0000', 'de0101', 'c21301', 'a71001', '911003'
+  ],
+};
+
+// Add clipped image layer to the map.
+Map.addLayer(clippedLSTc, 
+  //{min: 20, max: 40,
+  //palette: ['blue', 'limegreen', 'yellow', 'darkorange', 'red']
+  //},
+  landSurfaceTemperatureVis,
+  'Mean temperature');
+  
+/*============ Custom: extract data ==========================*/
+// Get districts as a list
+var districts = area_of_interest.aggregate_array("ADM2_NAME") //.distinct()
+print("districts")
+print(districts)
+print("districts count")
+print(districts.length()) // result: 64
+var districts_count = 64
+
+/*var LST_Day_1km__Data = districts.map(function(district_name){
+   var district_dataset = area_of_interest.filter(ee.Filter.eq("ADM2_NAME", district_name))
+    // print("district_dataset")
+    // print(district_dataset)
+    
+    var district_geometry=district_dataset.geometry()
+    // print("district_geometry")
+    // print(district_geometry)
+    
+    var x = modLSTc.map(function(img){
+      var stats = img.reduceRegion({
+        geometry: district_geometry,
+        scale: 30,
+        reducer: ee.Reducer.first(),
+        bestEffort:true,
+      });
+  
+      return ee.Feature(district_geometry, {
+        value: stats.get("LST_Day_1km"), 
+        hourStart: img.get('system:time_start'),
+        hourEnd : img.get('system:time_end'),
+        date: img.get('system:index'),
+        //lat: area_of_interest.geometry().coordinates().get(0),
+        //lon: area_of_interest.geometry().coordinates().get(1),
+        adm0_code: district_dataset.get("ADM0_CODE"),
+        adm0_name: district_dataset.get("ADM0_NAME"),
+        adm1_code: district_dataset.get("ADM1_CODE"),
+        adm1_name: district_dataset.get("ADM1_NAME"),
+        adm2_code: district_dataset.get("ADM2_CODE"),
+        adm2_name: district_dataset.get("ADM2_NAME"),
+        disp_area: district_dataset.get("DISP_AREA"),
+        exp2_year: district_dataset.get("EXP2_YEAR"),
+        status: district_dataset.get("STATUS"),
+        str2_year: district_dataset.get("STR2_YEAR"),
+        shape_area: district_dataset.get("Shape_Area"),
+        shape_leng: district_dataset.get("Shape_Leng"),
+      });
+      
+    });
+    
+    return x
+
+})
+print("LST_Day_1km__Data",LST_Day_1km__Data);*/
+
+var merged_LST_Day_1km__Data = null;
+var merged_LST_Night_1km__Data = null;
+
+// retrieve gee information for each district
+for(var i = 0; i<districts_count; i++){
+  
+  var district_name = districts.get(i)
+  print("i")
+  print(i)
+  print("district_name")
+  print(district_name) 
+  print("district_name.getInfo()")
+  print(district_name.getInfo())
+    
+    
+  var district_dataset = area_of_interest.filter(ee.Filter.eq("ADM2_NAME", district_name))
+  print("district_dataset")
+  print(district_dataset)
+    
+  var district_geometry=district_dataset.geometry()
+    // print("district_geometry")
+    // print(district_geometry)
+  
+  //get modis day temperature in celsius for each district, prepared to be exported in csv
+  var LST_Day_1km__Data = modLSTc.map(function(img){
+  
+  var stats = img.reduceRegion({
+      geometry: district_geometry,
+      scale: modis_dataset_resolution,
+      reducer: ee.Reducer.first(),
+      bestEffort:true,
+    });
+    
+    // print("stats")
+    // print(stats)
+
+  return ee.Feature(district_geometry, {
+      value: stats.get("LST_Day_1km"), 
+      hourStart: img.get('system:time_start'),
+      hourEnd : img.get('system:time_end'),
+      date: img.get('system:index'),
+      //lat: area_of_interest.geometry().coordinates().get(0),
+      //lon: area_of_interest.geometry().coordinates().get(1),
+      adm0_code: district_dataset.first().get("ADM0_CODE"),
+      adm0_name: district_dataset.first().get("ADM0_NAME"),
+      adm1_code: district_dataset.first().get("ADM1_CODE"),
+      adm1_name: district_dataset.first().get("ADM1_NAME"),
+      adm2_code: district_dataset.first().get("ADM2_CODE"),
+      adm2_name: district_dataset.first().get("ADM2_NAME"),
+      disp_area: district_dataset.first().get("DISP_AREA"),
+      exp2_year: district_dataset.first().get("EXP2_YEAR"),
+      status: district_dataset.first().get("STATUS"),
+      str2_year: district_dataset.first().get("STR2_YEAR"),
+      shape_area: district_dataset.first().get("Shape_Area"),
+      shape_leng: district_dataset.first().get("Shape_Leng"),      
+  });  
+  
+  
+      
+  });
+  print("LST_Day_1km__Data",LST_Day_1km__Data);
+  
+  //get modis night temperature in celsius for each district, prepared to be exported in csv
+  var LST_Night_1km__Data = modLSTc2.map(function(img){
+   
+    var stats = img.reduceRegion({
+      geometry: district_geometry,
+      scale: modis_dataset_resolution,
+      reducer: ee.Reducer.first(),
+      bestEffort:true
+    });
+
+    return ee.Feature(district_geometry, {
+      value: stats.get("LST_Night_1km"), 
+      hourStart: img.get('system:time_start'),
+      hourEnd : img.get('system:time_end'),
+      date: img.get('system:index'),
+      //lat: area_of_interest.geometry().coordinates().get(0),
+    //  lon: area_of_interest.geometry().coordinates().get(1),
+      adm0_code: district_dataset.first().get("ADM0_CODE"),
+      adm0_name: district_dataset.first().get("ADM0_NAME"),
+      adm1_code: district_dataset.first().get("ADM1_CODE"),
+      adm1_name: district_dataset.first().get("ADM1_NAME"),
+      adm2_code: district_dataset.first().get("ADM2_CODE"),
+      adm2_name: district_dataset.first().get("ADM2_NAME"),
+      disp_area: district_dataset.first().get("DISP_AREA"),
+      exp2_year: district_dataset.first().get("EXP2_YEAR"),
+      status: district_dataset.first().get("STATUS"),
+      str2_year: district_dataset.first().get("STR2_YEAR"),
+      shape_area: district_dataset.first().get("Shape_Area"),
+      shape_leng: district_dataset.first().get("Shape_Leng"),
+      });
+      
+  });
+  print("LST_Night_1km__Data",LST_Night_1km__Data);
+  
+  
+  
+  //merge current (district) FeatureCollection to the whole (for all districts) 
+  if(i==0){
+    merged_LST_Day_1km__Data = LST_Day_1km__Data
+    merged_LST_Night_1km__Data = LST_Night_1km__Data
+  }
+  else{
+    merged_LST_Day_1km__Data = merged_LST_Day_1km__Data.merge(LST_Day_1km__Data)
+    merged_LST_Night_1km__Data = merged_LST_Night_1km__Data.merge(LST_Night_1km__Data)
+  }
+ 
+
+  
+  // Export.table.toDrive({
+  //   collection: LST_Day_1km__Data,
+  //   folder: "Omdena/floodguard",
+  //   fileNamePrefix: "Bangladesh--LST_Day_1km__Data__"+district_name.getInfo()+"__from"+start_date+"To"+end_date,
+  //   description: "Bangladesh--LST_Day_1km__Data__"+district_name.getInfo()+"__from"+start_date+"To"+end_date,
+  //   fileFormat: "CSV"
+  // });
+  
+  // Export.table.toDrive({
+  //   collection: LST_Night_1km__Data,
+  //   folder: "Omdena/floodguard",
+  //   fileNamePrefix: "Bangladesh--LST_Night_1km__Data__"+district_name.getInfo()+"__from"+start_date+"To"+end_date,
+  //   description: "Bangladesh--LST_Night_1km__Data__"+district_name.getInfo()+"__from"+start_date+"To"+end_date,
+  //   fileFormat: "CSV"
+  // });
+  
+  // if(i==5)
+  //   break
+
+}
+
+// merged_LST_Day_1km__Data = merged_LST_Day_1km__Data.flatten()
+print("merged_LST_Day_1km__Data", merged_LST_Day_1km__Data);
+print("merged_LST_Night_1km__Data", merged_LST_Night_1km__Data);
+
+Export.table.toDrive({
+    collection: merged_LST_Day_1km__Data,
+    folder: "Omdena/floodguard",
+    fileNamePrefix: "Bangladesh--LST_Day_1km__Data__from_"+start_date+"_To_"+end_date,
+    description: "Bangladesh--LST_Day_1km__Data__from_"+start_date+"_To_"+end_date,
+    fileFormat: "CSV"
+});
+  
+Export.table.toDrive({
+    collection: merged_LST_Night_1km__Data,
+    folder: "Omdena/floodguard",
+    fileNamePrefix: "Bangladesh--LST_Night_1km__Data__from_"+start_date+"_To_"+end_date,
+    description: "Bangladesh--LST_Night_1km__Data__from_"+start_date+"_To_"+end_date,
+    fileFormat: "CSV"
+});

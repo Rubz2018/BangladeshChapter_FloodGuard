@@ -1,0 +1,107 @@
+aoi = aoi.filter(ee.Filter.eq('DISTRICT_N', 'Bandarban'))
+print(aoi)
+// Map.addLayer(aoi, {}, 'Bandorban');
+// Map.centerObject(aoi);
+// Import the palettes module from the Earth Engine Apps Gallery
+var palettes = require('users/gena/packages:palettes');
+
+var gf_day_1km = ee.ImageCollection("projects/sat-io/open-datasets/gap-filled-lst/gf_day_1km");
+var gf_night_1km = ee.ImageCollection("projects/sat-io/open-datasets/gap-filled-lst/gf_night_1km");
+
+
+var year = 2003;
+var startDate = ee.Date.fromYMD(year, 1, 1);
+var endDate = startDate.advance(1, 'year');
+
+var filteredDay = gf_day_1km
+  .filter(ee.Filter.date(startDate, endDate));
+var filteredNight = gf_night_1km
+  .filter(ee.Filter.date(startDate, endDate));
+
+var firstImageDay = filteredDay.first();
+var firstImageNight = filteredNight.first();
+
+Map.addLayer(firstImageDay.clip(aoi).multiply(0.1), {min: -50, max: 50, palette: palettes.cmocean.Balance[7]}, 'Daytime 1km LST');
+Map.addLayer(firstImageNight.clip(aoi).multiply(0.1), {min: -50, max: 30, palette: palettes.cmocean.Balance[7]}, 'Nighttime 1km LST');
+// Print the band names of the image
+
+
+print('Band Names:', firstImageDay.bandNames());
+print('Band Names:', firstImageNight.bandNames());
+// Specify the reducer (mean reducer)
+var reducer = ee.Reducer.mean(); 
+
+var meanTemperature1 = firstImageDay.reduceRegion({
+  reducer: reducer,
+  geometry: aoi,
+  scale: 5000,
+});
+
+// Print the mean temperature value
+print('Mean Temperature1:', meanTemperature1.get('b1'));
+
+var meanTemperature = firstImageNight.reduceRegion({
+  reducer: reducer,
+  geometry: aoi,
+  scale: 5000,
+});
+
+// Print the mean temperature value
+print('Mean Temperature:', meanTemperature.get('b1'));
+
+
+var years=ee.List.sequence(2003,2020)
+print(years)
+
+var yearTemperature= function(year) {
+  var startDate = ee.Date.fromYMD(year, 1, 1);
+  var endDate = startDate.advance(1, 'year');
+  var filteredDay = gf_day_1km
+  .filter(ee.Filter.date(startDate, endDate));
+  var filteredNight = gf_night_1km
+  .filter(ee.Filter.date(startDate, endDate));
+  
+  var firstImageDay = filteredDay.first();
+  var firstImageNight = filteredNight.first();
+  
+  var meanTemperature1 = firstImageDay.reduceRegion({
+  reducer : ee.Reducer.mean(),
+  geometry: aoi,
+  scale: 5000,
+  });
+
+  var meanTemperature = firstImageNight.reduceRegion({
+  reducer : ee.Reducer.mean(),
+  geometry: aoi,
+  scale: 5000,
+  });
+  
+  var f= ee.Feature(null, {
+    'year':year,
+    'Mean Temperature': meanTemperature.get('b1'),
+    'Mean Temperature1': meanTemperature1.get('b1')
+  })
+  return f  
+}
+
+var temparatureYears=ee.FeatureCollection(
+  years.map(yearTemperature)
+  )
+print(temparatureYears)
+
+Export.table.toDrive({
+  collection:temparatureYears,
+  fileNamePrefix: 'temparature_bandarban_day_night',
+  fileFormat:'csv'
+})
+// Map.addLayer(firstImage.clip(aoi).multiply(0.1),{min:-50,max:50,palette:palettes.cmocean.Balance[7]},' Daytime 1km LST')
+// Map.addLayer(secondImage.clip(aoi).multiply(0.1),{min:-50,max:30,palette:palettes.cmocean.Balance[7]},' Nighttime 1km LST')
+// var startDate = '2003-01-01';
+// var endDate = '2020-12-31';
+// var gf_day_1km_filtered = gf_day_1km.filterBounds(aoi).filterDate(startDate, endDate);
+// var gf_night_1km_filtered = gf_night_1km.filterBounds(aoi).filterDate(startDate, endDate);
+//gf indicates the gap-filled LST in the unit of 0.1 Celsius temperature (0.1 degree C) 
+// Map.addLayer(gf_day_1km_filtered.first().multiply(0.1),{min:-50,max:50,palette:palettes.cmocean.Balance[7]},' Daytime 1km LST')
+// Map.addLayer(gf_night_1km_filtered.first().multiply(0.1),{min:-50,max:30,palette:palettes.cmocean.Balance[7]},' Nighttime 1km LST')
+
+

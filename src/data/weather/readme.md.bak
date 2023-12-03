@@ -1,0 +1,7 @@
+
+* `./Chittagong/Chittagong hourly 2023-01-01 to 2023-01-31.csv`: Chittagong historical hourly weather data on Jan 2023, downloaded from [here](https://www.visualcrossing.com/weather/weather-data-services#), by `Ekoue`
+* `./Chittagong/Chittagong daily 2022-01-01 to 2023-10-22.csv`: Chittagong historical daily weather data from Jan 2022 to Oct 22 2023, downloaded from [here](https://www.visualcrossing.com/weather/weather-data-services#), by `Ekoue`
+* `./Chittagong/Chittagong daily 2020-01-01 to 2021-12-31.csv`: Chittagong historical daily weather data from Jan 2020 to Dec 2021, downloaded from [here](https://www.visualcrossing.com/weather/weather-data-services#), by `Ekoue`
+* `./Chittagong/Chittagong daily 2014-01-01 to 2015-12-31.csv`: Chittagong historical daily weather data from Jan 2014 to Dec 2015, downloaded from [here](https://www.visualcrossing.com/weather/weather-data-services#), by `Ekoue`
+
+

@@ -1,0 +1,90 @@
+// created by Ashique Mahmud
+// Code For Extracting Time series LST of Bangladesh (I have Extracted all 64 district LST of day and Night using this Code)
+// Import Geometry from Asset
+// data Set Used: MOD11A2.006 Terra Land Surface Temperature and Emissivity 8-Day Global 1km 
+// Data set Link: https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD11A2
+
+var aoi: Table projects/ashique1991/assets/bangladesh_districts
+
+// Import Data Set 
+var terra: ee.ImageCollection("MODIS/006/MOD11A2")
+
+
+var Dhaka_BD = aoi.filter(ee.Filter.eq('DISTRICT_N', 'Dhaka'));
+
+print(Dhaka_BD);
+
+Map.centerObject(Dhaka_BD, 6);
+Map.addLayer(Dhaka_BD);
+
+// Terra Land Surface Temperature and Emicivity 8 day Global 1km
+
+var start = ee.Date('2010-01-01');
+var dateRange = ee.DateRange(start, start.advance(23, 'year'));
+
+// Filter the LST collection to include only images intersecting the desired
+// date range.
+var mod11a2 = terra.filterDate(dateRange);
+
+// Select only the 1km day LST data band.
+var modLST = mod11a2.select('LST_Day_1km', 'LST_Night_1km');
+print(modLST)
+
+var inCelsius = modLST.map(function(img) {
+  return img
+    .multiply(0.02)
+    .subtract(273.15)
+    .copyProperties(img, ['system:time_start']);
+});
+
+print('Converted', inCelsius);
+
+
+var ts1 = ui.Chart.image.series({
+  imageCollection: inCelsius,
+  region: Dhaka_BD,
+  reducer: ee.Reducer.mean(),
+  scale: 1000,
+  xProperty: 'system:time_start'})
+  .setOptions({
+     title: 'Time Series Data of LST for Dhaka District from 2010 to 2023',
+     vAxis: {title: 'LST Celsius'}});
+print(ts1);
+
+var LST_day = inCelsius.select('LST_Day_1km').mean().clip(Dhaka_BD);
+var LST_night = inCelsius.select('LST_Night_1km').mean().clip(Dhaka_BD);
+Map.addLayer(LST_day, {
+  min: 10, max: 40,
+  palette: ['blue', 'limegreen', 'yellow', 'darkorange', 'red']},
+  'Mean Day temperature, 2015');
+
+Map.addLayer(LST_night, {
+  min: 10, max: 40,
+  palette: ['blue', 'limegreen', 'yellow', 'darkorange', 'red']},
+  'Mean Night temperature, 2015');
+
+  // Export LST Day image to  Google Drive account
+Export.image.toDrive({
+  image: LST_day,
+  description: 'LST_Dhaka at Day Time',
+  folder: 'Land Surface Temperatures Bangladesh ',
+  region: Dhaka_BD,
+  scale: 1000,
+  crs: 'EPSG:4326',
+  maxPixels: 1e10});
+  
+  // Export LST Night image to  Google Drive account
+Export.image.toDrive({
+  image: LST_day,
+  description: 'LST_Dhaka at Night Time',
+  folder: 'Land Surface Temperatures Bangladesh ',
+  region: Dhaka_BD,
+  scale: 1000,
+  crs: 'EPSG:4326',
+  maxPixels: 1e10});
+
+  
+
+
+
+

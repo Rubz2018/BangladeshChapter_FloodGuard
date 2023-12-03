@@ -1,0 +1,66 @@
+// var roi imported from zip file sent in the project folder
+var hydro = ee.Image('MERIT/Hydro_reduced/v1_0_1')
+  .select(['upa', 'wth'])
+  .multiply(0.01); // Convert to percentage
+
+function river(district, startDate, endDate) {
+  var districtGeometry = district.geometry();
+  var monthlyAverages = ee.List.sequence(1, 12).map(function (month) {
+    var filteredImage = hydro
+      .clip(district)
+      .reduceRegion({
+        reducer: ee.Reducer.mean(),
+        geometry: districtGeometry,
+        scale: 550.6,
+        maxPixels: 1e13
+      });
+    var upaMean = ee.Number(filteredImage.get('upa'));
+    var wthMean = ee.Number(filteredImage.get('wth'));
+    return [upaMean, wthMean];
+  });
+
+  return monthlyAverages;
+}
+
+// Get the districts as a list
+var list = roi.aggregate_array('DISTRICT_N');
+print(list);
+
+// Create an empty list to store monthly averages.
+var monthlyAverages = [];
+
+// Iterate over years from 1987 to 2016 and for each year, iterate over months.
+for (var year = 1987; year <= 2016; year++) {
+  for (var month = 1; month <= 12; month++) {
+    var startDate = ee.Date.fromYMD(year, month, 1);
+    var endDate = ee.Date.fromYMD(year, month + 1, 1);
+
+    // Calculate the monthly mean values for each district.
+    var monthAverages = roi.map(function (district) {
+      var individual = roi.filter(ee.Filter.eq('DISTRICT_N', district.get('DISTRICT_N'))).first();
+      var meanValues = river(individual, startDate, endDate);
+      return ee.Feature(null, {
+        'district': district.get('DISTRICT_N'),
+        'year': year,
+        'month': month,
+        'upa_mean': meanValues.get(0),
+        'wth_mean': meanValues.get(1)
+      });
+    });
+
+    // Add the monthly averages to the list.
+    monthlyAverages = monthlyAverages.concat(monthAverages);
+  }
+}
+
+
+// Create a FeatureCollection from the list of monthly averages.
+var monthlyAveragesCollection = ee.FeatureCollection(monthlyAverages).flatten();
+
+// Export monthly averages to Google Drive as a CSV file.
+Export.table.toDrive({
+  collection: monthlyAveragesCollection,
+  description: 'monthly_average_export',
+  folder: 'exports', // Make sure this folder exists in your Google Drive.
+  fileFormat: 'CSV'
+});
