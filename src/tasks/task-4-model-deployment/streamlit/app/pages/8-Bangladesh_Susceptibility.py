@@ -17,13 +17,23 @@ from branca.element import Template, MacroElement
 APP_TITLE = 'Bangladesh Flood Susceptibility'
 APP_SUB_TITLE = 'Zainab Akhtar'
 
+# Get current directory
+current_dir = os.path.dirname(__file__)
 
+# Construct path to artifactory directory
+artifactory_dir = os.path.join(current_dir, '..', 'artifactory')
+
+# Construct path for the files
+image_path = os.path.join(artifactory_dir, 'bangladesh_floods.jpeg')
+tiff_path = os.path.join(artifactory_dir, 'IDW_clipped.tif')
+shp_path = os.path.join(artifactory_dir, 'bgd_admbnda_adm1_bbs_20201113.shp')
+legend_path=os.path.join(artifactory_dir, 'colormap_legend.png')
 
 def main():
     st.set_page_config(APP_TITLE)
     st.title(APP_TITLE)
     st.caption(APP_SUB_TITLE)
-    st.image('data/bangladesh_floods.jpeg', caption='The Devastating Impact of Floods in Bangladesh')  
+    st.image(image_path, caption='The Devastating Impact of Floods in Bangladesh')  
     
     st.header('Motivation & Goal:')
     st.write('The objective is to investigate flood susceptibility in Bangladesh. Eleven influential factors (i.e., elevation, slope, aspect, curvature, SPI,LULC, drainage density, river distance, soil texture, soil permeability, and geology) were applied as inputs to a model. In this work, 2,766 samples were taken at different locations based on flood (N=1,408) and non-flood (N=1,358) characteristics; of these, 80% of the inventory dataset was used for training and 20% for testing. A Random Forest Classifier was applied to develop a flood susceptibility model, and the results were plotted on a map using IDW interpolation in QGIS.')
@@ -36,7 +46,7 @@ def main():
     st.header('Visualization:')
     
 # Open the raster file
-    with rasterio.open('data/IDW_clipped.tif') as src:
+    with rasterio.open(tiff_path) as src:
         # Read the first band
         band1 = src.read(1)
 
@@ -85,7 +95,7 @@ def main():
         #ImageOverlay(image=image_data, bounds=[[src.bounds.bottom, src.bounds.left], [src.bounds.top, src.bounds.right]], interactive=False,mercator_project=True).add_to(map)
 
 
-        gdf = gpd.read_file('data/bgd_admbnda_adm1_bbs_20201113.shp')
+        gdf = gpd.read_file(shp_path)
         if gdf.crs is None:
             gdf.set_crs(epsg=4326, inplace=True)
         
@@ -161,7 +171,7 @@ def main():
     col1, col2, col3 = st.columns([1,2,1])
 
     with col2:
-        st.image('data/colormap_legend.png', width=300)
+        st.image(legend_path, width=300)
 
     st.header('Findings and Conclusion:')
     st.write('The flood susceptibility map of Bangladesh indicates that the Khulna Division, particularly near the coastline, exhibits over 50% high risk of flooding, aligning with scientific studies that identify the Satkhira district within Khulna as one of the countrys most flood-prone regions. In stark contrast, the Dhaka Division is shown to be the least susceptible, which can be attributed to its inland location and higher elevation, providing some natural protection against flooding. However, while Dhaka might be less prone to large-scale natural flooding, urban flood risks due to infrastructural challenges remain a concern. This analysis underscores the varying degrees of flood risks across regions and emphasizes the need for region-specific flood mitigation and adaptation strategies to safeguard vulnerable communities and infrastructure.')
