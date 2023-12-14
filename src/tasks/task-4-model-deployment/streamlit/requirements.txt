@@ -27,4 +27,4 @@ matplotlib
 numpy
 geopandas
 shapely
-folium==0.12.1.post1
+folium
