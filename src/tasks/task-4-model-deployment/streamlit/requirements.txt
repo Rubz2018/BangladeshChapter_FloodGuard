@@ -9,7 +9,7 @@ numpy
 tensorflow==2.15.0
 xgboost
 plotly
-
+pickle
 streamlit
 streamlit-camera-input-live
 streamlit-card
