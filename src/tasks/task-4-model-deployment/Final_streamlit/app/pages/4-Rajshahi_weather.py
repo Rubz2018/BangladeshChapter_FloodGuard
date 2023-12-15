@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -11,6 +12,43 @@ np.random.seed(42)
 tf.random.set_seed(42)
 tf.keras.utils.set_random_seed(42)
 
+
+# Get current directory
+current_dir = os.path.dirname(__file__)
+
+# Construct path to artifactory directory
+artifactory_dir = os.path.join(current_dir, '..', 'artifactory')
+
+# Construct path for the files
+model_path = os.path.join(artifactory_dir, 'lstm_rajshahi_model.h5')
+testdata_path = os.path.join(artifactory_dir, 'rajshahi_test.csv')
+image_path = os.path.join(artifactory_dir, 'Rajshahi_city.jpg')
+def header():
+    st.header("Rajshahi Weather Forecasting")
+
+    st.image(image_path, caption='Padma Lake', use_column_width=True)
+
+    st.write("""
+        Bangladesh is a country in South Asia that is known for its rich natural beauty and biodiversity. 
+        Rajshahi is a metropolitan city and a major urban, commercial and educational centre of Bangladesh. It is also the administrative seat of the eponymous division and district. 
+        Located on the north bank of the Padma River., Rajshahi has a tropical wet and dry climate. The climate of Rajshahi is generally marked with monsoons, high temperature, considerable humidity and moderate rainfall.
+        """)
+
+    st.write("""
+        **Problem Statement:**
+        The repercussions of flooding in Bangladesh give rise to pressing issues, encompassing the loss of lives, devastation of crops, infrastructure damage, 
+        and displacement of communities. Accurate and timely flood prediction, along with waterbody forecasting, is paramount to mitigating the impact of floods. 
+        It enhances disaster preparedness, allowing for more effective resource allocation.
+        """)
+    st.write("""
+        **Model Overview:**
+        Data spanning from January 1, 2012, to August 17, 2023, served as the foundation for predicting daily average precipitation, the cumulative sum 
+        of rainfall, and river discharge in Rajshahi through the application of the Timeseries LSTM Model. The model's efficacy was assessed, yielding commendable
+        result: mo_lstm_model -reported Loss: approximately 0.0008734 ,Mean absolute error (MAE): approximately 0.0160. The model appears to have achieved quite low error rates on the validation set, suggesting that it's making predictions that are very close to the actual values in your dataset.
+        """)
+
+    target_variables = ['precip', 'rain_sum', 'river_discharge']
+
 def header():
     st.header("Rajshahi Weather Forecasting")
 
@@ -22,7 +60,6 @@ def load_test_df():
 @st.cache_resource
 def build_lstm_model():
     new_model = keras.models.load_model("app/artifactory/lstm_rajshahi_model.h5")
-
     return new_model
 
 def show_search_query():
