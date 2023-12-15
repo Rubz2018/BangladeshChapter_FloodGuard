@@ -12,7 +12,9 @@ MODEL_FILE = os.path.join(ARTIFACTORY_DIR, 'xgb_r.joblib')
 #load the model
 model =joblib.load(MODEL_FILE)
 
-image = Image.open('Barisal_mosque.jpg')
+barisal_mosque = os.path.join(ARTIFACTORY_DIR, 'Barisal_mosque.jpg')
+#st.image(barisal_mosque)
+image = Image.open('barisal_mosque.jpg')
 
 
        
