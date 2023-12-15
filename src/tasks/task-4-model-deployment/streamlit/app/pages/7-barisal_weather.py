@@ -15,7 +15,7 @@ model =joblib.load(MODEL_FILE)
 
 barisal_mosque = os.path.join(ARTIFACTORY_DIR, 'Barisal_mosque.jpg')
 #st.image(barisal_mosque)
-image = Image.open('barisal_mosque.jpg')
+image = Image.open('barisal_mosque')
 
 
        
