@@ -25,7 +25,7 @@ st.header("Flood Guard - Bangladesh Sylhet Region")
 
 
 #st.image(image_path, caption='Shah Jalal Mazar', use_column_width=True)
-st.image(r"/mount/src/bangladesh-flood-guard/src/tasks/task-4-model-deployment/streamlit/app/artifactory/Shah_Jalal_Mazar_at_Sylhet.jpeg", caption='Shah Jalal Mazar', use_column_width=True)
+#st.image(r"/mount/src/bangladesh-flood-guard/src/tasks/task-4-model-deployment/streamlit/app/artifactory/Shah_Jalal_Mazar_at_Sylhet.jpeg", caption='Shah Jalal Mazar', use_column_width=True)
 
 
 st.write("""
