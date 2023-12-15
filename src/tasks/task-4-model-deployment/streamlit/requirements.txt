@@ -18,7 +18,7 @@ streamlit-image-coordinates
 streamlit-keyup
 streamlit-toggle-switch
 streamlit-vertical-slider
-
+Pillow
 streamlit_folium==0.6.13
 rasterio
 matplotlib
