@@ -1,6 +1,6 @@
 import joblib
 import streamlit as st
-from PIL import Image
+#from PIL import Image
 import os
 
 
@@ -15,7 +15,8 @@ model =joblib.load(MODEL_FILE)
 
 barisal_mosque = os.path.join(ARTIFACTORY_DIR, 'Barisal_mosque.jpg')
 #st.image(barisal_mosque)
-image = Image.open('barisal_mosque')
+image_path = os.path.join(ARTIFACTORY_DIR, 'Barisal_mosque.jpg')
+#image = Image.open('barisal_mosque')
 
 
        
@@ -25,7 +26,7 @@ image = Image.open('barisal_mosque')
 def main():
     st.title("Flood Guard - Barisal Region")
 
-    st.image(image, caption='Barisal Distirct')
+    st.image(image_path, caption='Barisal Distirct')
 
     st.write("""
     Bangladesh is a country in South Asia that is known for its rich natural beauty and biodiversity. 
