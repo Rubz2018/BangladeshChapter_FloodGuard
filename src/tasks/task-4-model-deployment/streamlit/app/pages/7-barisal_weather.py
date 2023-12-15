@@ -1,8 +1,16 @@
-import pickle
+import joblib
 import streamlit as st
 from PIL import Image
 
-model = pickle.load(open('C:/Users/smart/OneDrive/Desktop/barisal/Barisal.pkl', 'rb'))
+
+# Set up directories
+working_dir = os.path.dirname(os.path.realpath(__file__))
+app_dir = os.path.dirname(working_dir)
+ARTIFACTORY_DIR = os.path.join(app_dir, 'artifactory')
+MODEL_FILE = os.path.join(ARTIFACTORY_DIR, 'xgb_r.joblib')
+
+#load the model
+model =load_model(MODEL_FILE)
 
 image = Image.open('Barisal_mosque.jpg')
 
