@@ -1,0 +1,1475 @@
+{
+    "stamp_created": 1706469420.742749,
+    "total_authors": 12,
+    "activity_by_hour_of_day": {
+        "2": 1,
+        "1": 4,
+        "23": 13,
+        "22": 11,
+        "20": 4,
+        "18": 5,
+        "16": 2,
+        "13": 6,
+        "7": 5,
+        "6": 5,
+        "4": 1,
+        "0": 3,
+        "12": 3,
+        "11": 4,
+        "8": 1,
+        "3": 1,
+        "21": 3,
+        "14": 3
+    },
+    "activity_by_day_of_week": {
+        "5": 12,
+        "4": 43,
+        "3": 8,
+        "1": 2,
+        "2": 4,
+        "0": 3,
+        "6": 3
+    },
+    "activity_by_month_of_year": {
+        "12": 75
+    },
+    "activity_by_hour_of_week": {
+        "5": {
+            "2": 1,
+            "1": 4,
+            "7": 4,
+            "0": 3
+        },
+        "4": {
+            "23": 10,
+            "22": 9,
+            "20": 4,
+            "18": 2,
+            "16": 2,
+            "13": 4,
+            "7": 1,
+            "6": 1,
+            "4": 1,
+            "12": 3,
+            "11": 4,
+            "8": 1,
+            "3": 1
+        },
+        "3": {
+            "18": 3,
+            "21": 3,
+            "6": 2
+        },
+        "1": {
+            "6": 2
+        },
+        "2": {
+            "22": 2,
+            "14": 2
+        },
+        "0": {
+            "23": 3
+        },
+        "6": {
+            "14": 1,
+            "13": 2
+        }
+    },
+    "activity_by_hour_of_day_busiest": 13,
+    "activity_by_hour_of_week_busiest": 10,
+    "activity_by_year_week": {
+        "2023-50": 38,
+        "2023-49": 34,
+        "2023-48": 3
+    },
+    "authors": {
+        "Mohammad Shanawaz Anwar": {
+            "last_commit_stamp": 1702671337,
+            "first_commit_stamp": 1701712453,
+            "last_active_day": "2023-12-04",
+            "active_days": [
+                "2023-12-04",
+                "2023-12-08",
+                "2023-12-15",
+                "2023-12-16"
+            ],
+            "commits": 23,
+            "lines_added": 50614,
+            "lines_removed": 24375,
+            "place_by_commits": 1,
+            "commits_frac": 30.666666666666668,
+            "date_first": "2023-12-04",
+            "date_last": "2023-12-16",
+            "timedelta": "11 days, 2:21:24"
+        },
+        "Miho Rosenberg": {
+            "last_commit_stamp": 1702658258,
+            "first_commit_stamp": 1702003437,
+            "last_active_day": "2023-12-08",
+            "active_days": [
+                "2023-12-12",
+                "2023-12-08",
+                "2023-12-15"
+            ],
+            "commits": 12,
+            "lines_added": 9793,
+            "lines_removed": 154,
+            "place_by_commits": 2,
+            "commits_frac": 16.0,
+            "date_first": "2023-12-08",
+            "date_last": "2023-12-15",
+            "timedelta": "7 days, 13:53:41"
+        },
+        "Vijay Mamilla": {
+            "last_commit_stamp": 1702657711,
+            "first_commit_stamp": 1702643041,
+            "last_active_day": "2023-12-15",
+            "active_days": [
+                "2023-12-15"
+            ],
+            "commits": 4,
+            "lines_added": 6,
+            "lines_removed": 5,
+            "place_by_commits": 6,
+            "commits_frac": 5.333333333333333,
+            "date_first": "2023-12-15",
+            "date_last": "2023-12-15",
+            "timedelta": "4:04:30"
+        },
+        "ShinYingChua": {
+            "last_commit_stamp": 1702652024,
+            "first_commit_stamp": 1701962173,
+            "last_active_day": "2023-12-07",
+            "active_days": [
+                "2023-12-15",
+                "2023-12-07"
+            ],
+            "commits": 4,
+            "lines_added": 5935,
+            "lines_removed": 10174,
+            "place_by_commits": 7,
+            "commits_frac": 5.333333333333333,
+            "date_first": "2023-12-07",
+            "date_last": "2023-12-15",
+            "timedelta": "7 days, 23:37:31"
+        },
+        "zakhtar8": {
+            "last_commit_stamp": 1702644227,
+            "first_commit_stamp": 1701908174,
+            "last_active_day": "2023-12-07",
+            "active_days": [
+                "2023-12-15",
+                "2023-12-09",
+                "2023-12-07"
+            ],
+            "commits": 8,
+            "lines_added": 5346,
+            "lines_removed": 5,
+            "place_by_commits": 4,
+            "commits_frac": 10.666666666666666,
+            "date_first": "2023-12-07",
+            "date_last": "2023-12-15",
+            "timedelta": "8 days, 12:27:33"
+        },
+        "Milan Waghmare": {
+            "last_commit_stamp": 1702637850,
+            "first_commit_stamp": 1702637841,
+            "last_active_day": "2023-12-15",
+            "active_days": [
+                "2023-12-15"
+            ],
+            "commits": 2,
+            "lines_added": 73,
+            "lines_removed": 1,
+            "place_by_commits": 10,
+            "commits_frac": 2.6666666666666665,
+            "date_first": "2023-12-15",
+            "date_last": "2023-12-15",
+            "timedelta": "0:00:09"
+        },
+        "Saadiabinte2023": {
+            "last_commit_stamp": 1702626710,
+            "first_commit_stamp": 1701589570,
+            "last_active_day": "2023-12-03",
+            "active_days": [
+                "2023-12-15",
+                "2023-12-03",
+                "2023-12-09"
+            ],
+            "commits": 9,
+            "lines_added": 1428392,
+            "lines_removed": 8,
+            "place_by_commits": 3,
+            "commits_frac": 12.0,
+            "date_first": "2023-12-03",
+            "date_last": "2023-12-15",
+            "timedelta": "12 days, 0:05:40"
+        },
+        "Swati": {
+            "last_commit_stamp": 1702602524,
+            "first_commit_stamp": 1702557889,
+            "last_active_day": "2023-12-14",
+            "active_days": [
+                "2023-12-14",
+                "2023-12-15"
+            ],
+            "commits": 5,
+            "lines_added": 5534,
+            "lines_removed": 6,
+            "place_by_commits": 5,
+            "commits_frac": 6.666666666666667,
+            "date_first": "2023-12-14",
+            "date_last": "2023-12-15",
+            "timedelta": "12:23:55"
+        },
+        "Rubz2018": {
+            "last_commit_stamp": 1702058722,
+            "first_commit_stamp": 1701589254,
+            "last_active_day": "2023-12-03",
+            "active_days": [
+                "2023-12-08",
+                "2023-12-03",
+                "2023-12-09"
+            ],
+            "commits": 3,
+            "lines_added": 868,
+            "lines_removed": 1,
+            "place_by_commits": 8,
+            "commits_frac": 4.0,
+            "date_first": "2023-12-03",
+            "date_last": "2023-12-09",
+            "timedelta": "5 days, 10:24:28"
+        },
+        "KyawHtetPaingWin": {
+            "last_commit_stamp": 1701985168,
+            "first_commit_stamp": 1701985168,
+            "last_active_day": "2023-12-08",
+            "active_days": [
+                "2023-12-08"
+            ],
+            "commits": 1,
+            "lines_added": 11489,
+            "lines_removed": 0,
+            "place_by_commits": 12,
+            "commits_frac": 1.3333333333333333,
+            "date_first": "2023-12-08",
+            "date_last": "2023-12-08",
+            "timedelta": "0:00:00"
+        },
+        "Gaurav Bhattacharya": {
+            "last_commit_stamp": 1701879138,
+            "first_commit_stamp": 1701852795,
+            "last_active_day": "2023-12-06",
+            "active_days": [
+                "2023-12-06"
+            ],
+            "commits": 2,
+            "lines_added": 0,
+            "lines_removed": 0,
+            "place_by_commits": 11,
+            "commits_frac": 2.6666666666666665,
+            "date_first": "2023-12-06",
+            "date_last": "2023-12-06",
+            "timedelta": "7:19:03"
+        },
+        "gbiamgaurav": {
+            "last_commit_stamp": 1701879094,
+            "first_commit_stamp": 1701852676,
+            "last_active_day": "2023-12-06",
+            "active_days": [
+                "2023-12-06"
+            ],
+            "commits": 2,
+            "lines_added": 8851,
+            "lines_removed": 1,
+            "place_by_commits": 9,
+            "commits_frac": 2.6666666666666665,
+            "date_first": "2023-12-06",
+            "date_last": "2023-12-06",
+            "timedelta": "7:20:18"
+        }
+    },
+    "total_commits": 75,
+    "total_files": 444,
+    "authors_by_commits": [
+        "Mohammad Shanawaz Anwar",
+        "Miho Rosenberg",
+        "Saadiabinte2023",
+        "zakhtar8",
+        "Swati",
+        "Vijay Mamilla",
+        "ShinYingChua",
+        "Rubz2018",
+        "gbiamgaurav",
+        "Milan Waghmare",
+        "Gaurav Bhattacharya",
+        "KyawHtetPaingWin"
+    ],
+    "domains": {
+        "users.noreply.github.com": {
+            "commits": 55
+        },
+        "gmail.com": {
+            "commits": 10
+        },
+        "iub.edu.bd": {
+            "commits": 9
+        },
+        "student.csulb.edu": {
+            "commits": 1
+        }
+    },
+    "author_of_month": {
+        "2023-12": {
+            "Mohammad Shanawaz Anwar": 23,
+            "Miho Rosenberg": 12,
+            "Vijay Mamilla": 4,
+            "ShinYingChua": 4,
+            "zakhtar8": 8,
+            "Milan Waghmare": 2,
+            "Saadiabinte2023": 9,
+            "Swati": 5,
+            "Rubz2018": 3,
+            "KyawHtetPaingWin": 1,
+            "Gaurav Bhattacharya": 2,
+            "gbiamgaurav": 2
+        }
+    },
+    "author_of_year": {
+        "2023": {
+            "Mohammad Shanawaz Anwar": 23,
+            "Miho Rosenberg": 12,
+            "Vijay Mamilla": 4,
+            "ShinYingChua": 4,
+            "zakhtar8": 8,
+            "Milan Waghmare": 2,
+            "Saadiabinte2023": 9,
+            "Swati": 5,
+            "Rubz2018": 3,
+            "KyawHtetPaingWin": 1,
+            "Gaurav Bhattacharya": 2,
+            "gbiamgaurav": 2
+        }
+    },
+    "commits_by_month": {
+        "2023-12": 75
+    },
+    "commits_by_year": {
+        "2023": 75
+    },
+    "lines_added_by_month": {
+        "2023-12": 1526896
+    },
+    "lines_added_by_year": {
+        "2023": 1526896
+    },
+    "lines_removed_by_month": {
+        "2023-12": 34725
+    },
+    "lines_removed_by_year": {
+        "2023": 34725
+    },
+    "first_commit_stamp": 1701589254,
+    "last_commit_stamp": 1702671337,
+    "last_active_day": "2023-12-03",
+    "active_days": [
+        "2023-12-15",
+        "2023-12-06",
+        "2023-12-12",
+        "2023-12-08",
+        "2023-12-03",
+        "2023-12-07",
+        "2023-12-04",
+        "2023-12-14",
+        "2023-12-09",
+        "2023-12-16"
+    ],
+    "total_lines": 1492171,
+    "total_lines_added": 1526896,
+    "total_lines_removed": 34725,
+    "total_size": 325353046,
+    "commits_by_timezone": {
+        "+0530": 27,
+        "-0500": 16,
+        "+0800": 4,
+        "+0300": 8,
+        "+0100": 2,
+        "+0600": 12,
+        "+0900": 5,
+        "-0800": 1
+    },
+    "tags": {},
+    "files_by_stamp": {
+        "1702671337": 444,
+        "1702670098": 444,
+        "1702669983": 444,
+        "1702669918": 443,
+        "1702662860": 442,
+        "1702662429": 442,
+        "1702662024": 442,
+        "1702661279": 442,
+        "1702661030": 442,
+        "1702660827": 442,
+        "1702660720": 441,
+        "1702659972": 441,
+        "1702658761": 441,
+        "1702658258": 440,
+        "1702657734": 440,
+        "1702657711": 439,
+        "1702656394": 439,
+        "1702656246": 439,
+        "1702652024": 438,
+        "1702650034": 438,
+        "1702649902": 439,
+        "1702649672": 439,
+        "1702644227": 438,
+        "1702643041": 438,
+        "1702637850": 435,
+        "1702637841": 435,
+        "1702626710": 433,
+        "1702626323": 433,
+        "1702626300": 433,
+        "1702626195": 433,
+        "1702602524": 433,
+        "1702600340": 433,
+        "1702594658": 433,
+        "1702558376": 433,
+        "1702558035": 432,
+        "1702557889": 429,
+        "1702340297": 428,
+        "1702340194": 427,
+        "1702085690": 426,
+        "1702085507": 426,
+        "1702085426": 425,
+        "1702085284": 425,
+        "1702064116": 414,
+        "1702059135": 414,
+        "1702058722": 328,
+        "1702058662": 328,
+        "1702058284": 241,
+        "1702057002": 241,
+        "1702054392": 241,
+        "1702053781": 241,
+        "1702051982": 241,
+        "1702016792": 241,
+        "1702016735": 240,
+        "1702016665": 241,
+        "1702012829": 240,
+        "1702012686": 239,
+        "1702012648": 238,
+        "1702012593": 239,
+        "1702003437": 238,
+        "1701985168": 233,
+        "1701963091": 223,
+        "1701962322": 220,
+        "1701962173": 219,
+        "1701908289": 219,
+        "1701908174": 218,
+        "1701879138": 217,
+        "1701879094": 217,
+        "1701852795": 217,
+        "1701852676": 217,
+        "1701712573": 214,
+        "1701712516": 207,
+        "1701712453": 214,
+        "1701592869": 207,
+        "1701589570": 207,
+        "1701589254": 0
+    },
+    "extensions": {
+        "": {
+            "files": 37,
+            "lines": 426
+        },
+        "md": {
+            "files": 13,
+            "lines": 475
+        },
+        "ipynb": {
+            "files": 40,
+            "lines": 376571
+        },
+        "txt": {
+            "files": 13,
+            "lines": 948
+        },
+        "png": {
+            "files": 25,
+            "lines": 17454
+        },
+        "csv": {
+            "files": 56,
+            "lines": 114424
+        },
+        "shp": {
+            "files": 2,
+            "lines": 39148
+        },
+        "pbix": {
+            "files": 1,
+            "lines": 21317
+        },
+        "py": {
+            "files": 51,
+            "lines": 4370
+        },
+        "h5": {
+            "files": 18,
+            "lines": 6523
+        },
+        "pkl": {
+            "files": 9,
+            "lines": 192601
+        },
+        "json": {
+            "files": 4,
+            "lines": 15
+        },
+        "gz": {
+            "files": 1,
+            "lines": 37
+        },
+        "out": {
+            "files": 1,
+            "lines": 4595
+        },
+        "xml": {
+            "files": 13,
+            "lines": 2011
+        },
+        "iml": {
+            "files": 3,
+            "lines": 23
+        },
+        "jpg": {
+            "files": 9,
+            "lines": 15237
+        },
+        "joblib": {
+            "files": 6,
+            "lines": 8550
+        },
+        "css": {
+            "files": 3,
+            "lines": 48
+        },
+        "ps1": {
+            "files": 3,
+            "lines": 1416
+        },
+        "bat": {
+            "files": 6,
+            "lines": 168
+        },
+        "exe": {
+            "files": 102,
+            "lines": 41361
+        },
+        "cmd": {
+            "files": 3,
+            "lines": 48
+        },
+        "cfg": {
+            "files": 3,
+            "lines": 15
+        },
+        "js": {
+            "files": 6,
+            "lines": 120
+        },
+        "map": {
+            "files": 3,
+            "lines": 0
+        },
+        "1": {
+            "files": 3,
+            "lines": 672
+        },
+        "zip": {
+            "files": 1,
+            "lines": 12138
+        },
+        "tif": {
+            "files": 1,
+            "lines": 286
+        },
+        "jpeg": {
+            "files": 2,
+            "lines": 7590
+        },
+        "CPG": {
+            "files": 1,
+            "lines": 0
+        },
+        "dbf": {
+            "files": 1,
+            "lines": 0
+        },
+        "prj": {
+            "files": 1,
+            "lines": 0
+        },
+        "sbn": {
+            "files": 1,
+            "lines": 1
+        },
+        "sbx": {
+            "files": 1,
+            "lines": 1
+        },
+        "shx": {
+            "files": 1,
+            "lines": 2
+        }
+    },
+    "changes_by_date": {
+        "1701589254": {
+            "files": 3,
+            "ins": 835,
+            "del": 0,
+            "lines": 835
+        },
+        "1701589570": {
+            "files": 348,
+            "ins": 1411586,
+            "del": 0,
+            "lines": 1412421
+        },
+        "1701592869": {
+            "files": 1,
+            "ins": 0,
+            "del": 0,
+            "lines": 1412421
+        },
+        "1701712453": {
+            "files": 7,
+            "ins": 24109,
+            "del": 0,
+            "lines": 1436530
+        },
+        "1701712516": {
+            "files": 7,
+            "ins": 0,
+            "del": 24109,
+            "lines": 1412421
+        },
+        "1701712573": {
+            "files": 7,
+            "ins": 24109,
+            "del": 0,
+            "lines": 1436530
+        },
+        "1701852795": {
+            "files": 3,
+            "ins": 3532,
+            "del": 0,
+            "lines": 1440062
+        },
+        "1701879138": {
+            "files": 2,
+            "ins": 5319,
+            "del": 1,
+            "lines": 1445380
+        },
+        "1701908174": {
+            "files": 1,
+            "ins": 0,
+            "del": 0,
+            "lines": 1445380
+        },
+        "1701908289": {
+            "files": 1,
+            "ins": 3227,
+            "del": 0,
+            "lines": 1448607
+        },
+        "1701962173": {
+            "files": 3,
+            "ins": 3031,
+            "del": 10166,
+            "lines": 1441472
+        },
+        "1701962322": {
+            "files": 1,
+            "ins": 2167,
+            "del": 0,
+            "lines": 1443639
+        },
+        "1701963091": {
+            "files": 3,
+            "ins": 703,
+            "del": 0,
+            "lines": 1444342
+        },
+        "1701985168": {
+            "files": 11,
+            "ins": 11489,
+            "del": 0,
+            "lines": 1455831
+        },
+        "1702003437": {
+            "files": 5,
+            "ins": 1932,
+            "del": 0,
+            "lines": 1457763
+        },
+        "1702012593": {
+            "files": 1,
+            "ins": 0,
+            "del": 0,
+            "lines": 1457763
+        },
+        "1702012648": {
+            "files": 1,
+            "ins": 0,
+            "del": 0,
+            "lines": 1457763
+        },
+        "1702012686": {
+            "files": 1,
+            "ins": 0,
+            "del": 0,
+            "lines": 1457763
+        },
+        "1702012829": {
+            "files": 1,
+            "ins": 2044,
+            "del": 0,
+            "lines": 1459807
+        },
+        "1702016665": {
+            "files": 1,
+            "ins": 69,
+            "del": 0,
+            "lines": 1459876
+        },
+        "1702016735": {
+            "files": 1,
+            "ins": 0,
+            "del": 69,
+            "lines": 1459807
+        },
+        "1702016792": {
+            "files": 1,
+            "ins": 69,
+            "del": 0,
+            "lines": 1459876
+        },
+        "1702051982": {
+            "files": 1,
+            "ins": 2,
+            "del": 1,
+            "lines": 1459877
+        },
+        "1702053781": {
+            "files": 1,
+            "ins": 1,
+            "del": 0,
+            "lines": 1459878
+        },
+        "1702054392": {
+            "files": 1,
+            "ins": 3,
+            "del": 1,
+            "lines": 1459880
+        },
+        "1702057002": {
+            "files": 1,
+            "ins": 3,
+            "del": 3,
+            "lines": 1459880
+        },
+        "1702058284": {
+            "files": 1,
+            "ins": 0,
+            "del": 1,
+            "lines": 1459879
+        },
+        "1702058662": {
+            "files": 87,
+            "ins": 8338,
+            "del": 0,
+            "lines": 1468217
+        },
+        "1702058722": {
+            "files": 1,
+            "ins": 33,
+            "del": 0,
+            "lines": 1468250
+        },
+        "1702059135": {
+            "files": 88,
+            "ins": 8461,
+            "del": 0,
+            "lines": 1476711
+        },
+        "1702064116": {
+            "files": 4,
+            "ins": 0,
+            "del": 0,
+            "lines": 1476711
+        },
+        "1702085284": {
+            "files": 11,
+            "ins": 1926,
+            "del": 0,
+            "lines": 1478637
+        },
+        "1702085426": {
+            "files": 1,
+            "ins": 8,
+            "del": 0,
+            "lines": 1478645
+        },
+        "1702085507": {
+            "files": 1,
+            "ins": 169,
+            "del": 0,
+            "lines": 1478814
+        },
+        "1702085690": {
+            "files": 1,
+            "ins": 14,
+            "del": 4,
+            "lines": 1478824
+        },
+        "1702340194": {
+            "files": 1,
+            "ins": 0,
+            "del": 0,
+            "lines": 1478824
+        },
+        "1702340297": {
+            "files": 1,
+            "ins": 159,
+            "del": 0,
+            "lines": 1478983
+        },
+        "1702557889": {
+            "files": 1,
+            "ins": 4721,
+            "del": 0,
+            "lines": 1483704
+        },
+        "1702558035": {
+            "files": 3,
+            "ins": 595,
+            "del": 0,
+            "lines": 1484299
+        },
+        "1702558376": {
+            "files": 1,
+            "ins": 213,
+            "del": 0,
+            "lines": 1484512
+        },
+        "1702637841": {
+            "files": 4,
+            "ins": 73,
+            "del": 1,
+            "lines": 1484584
+        },
+        "1702637850": {
+            "files": 2,
+            "ins": 8,
+            "del": 10,
+            "lines": 1484582
+        },
+        "1702643041": {
+            "files": 6,
+            "ins": 2,
+            "del": 1,
+            "lines": 1484583
+        },
+        "1702644227": {
+            "files": 1,
+            "ins": 1,
+            "del": 0,
+            "lines": 1484584
+        },
+        "1702649672": {
+            "files": 2,
+            "ins": 1,
+            "del": 1,
+            "lines": 1484584
+        },
+        "1702649902": {
+            "files": 1,
+            "ins": 5,
+            "del": 1,
+            "lines": 1484588
+        },
+        "1702650034": {
+            "files": 1,
+            "ins": 0,
+            "del": 147,
+            "lines": 1484441
+        },
+        "1702652024": {
+            "files": 1,
+            "ins": 34,
+            "del": 8,
+            "lines": 1484467
+        },
+        "1702656246": {
+            "files": 1,
+            "ins": 1,
+            "del": 0,
+            "lines": 1484468
+        },
+        "1702656394": {
+            "files": 1,
+            "ins": 2,
+            "del": 1,
+            "lines": 1484469
+        },
+        "1702657711": {
+            "files": 1,
+            "ins": 1,
+            "del": 2,
+            "lines": 1484468
+        },
+        "1702657734": {
+            "files": 1,
+            "ins": 1,
+            "del": 0,
+            "lines": 1484469
+        },
+        "1702658258": {
+            "files": 1,
+            "ins": 7686,
+            "del": 1,
+            "lines": 1492154
+        },
+        "1702658761": {
+            "files": 1,
+            "ins": 0,
+            "del": 0,
+            "lines": 1492154
+        },
+        "1702659972": {
+            "files": 1,
+            "ins": 10,
+            "del": 2,
+            "lines": 1492162
+        },
+        "1702660720": {
+            "files": 1,
+            "ins": 1,
+            "del": 1,
+            "lines": 1492162
+        },
+        "1702660827": {
+            "files": 1,
+            "ins": 0,
+            "del": 0,
+            "lines": 1492162
+        },
+        "1702661030": {
+            "files": 1,
+            "ins": 3,
+            "del": 1,
+            "lines": 1492164
+        },
+        "1702661279": {
+            "files": 1,
+            "ins": 1,
+            "del": 1,
+            "lines": 1492164
+        },
+        "1702662024": {
+            "files": 1,
+            "ins": 1,
+            "del": 0,
+            "lines": 1492165
+        },
+        "1702662429": {
+            "files": 1,
+            "ins": 1,
+            "del": 1,
+            "lines": 1492165
+        },
+        "1702662860": {
+            "files": 1,
+            "ins": 145,
+            "del": 42,
+            "lines": 1492268
+        },
+        "1702669918": {
+            "files": 1,
+            "ins": 0,
+            "del": 0,
+            "lines": 1492268
+        },
+        "1702669983": {
+            "files": 1,
+            "ins": 0,
+            "del": 0,
+            "lines": 1492268
+        },
+        "1702670098": {
+            "files": 1,
+            "ins": 48,
+            "del": 146,
+            "lines": 1492170
+        },
+        "1702671337": {
+            "files": 1,
+            "ins": 4,
+            "del": 3,
+            "lines": 1492171
+        }
+    },
+    "changes_by_date_by_author": {
+        "1701589254": {
+            "Rubz2018": {
+                "lines_added": 835,
+                "commits": 1
+            }
+        },
+        "1701589570": {
+            "Saadiabinte2023": {
+                "lines_added": 1411586,
+                "commits": 1
+            }
+        },
+        "1701592869": {
+            "Saadiabinte2023": {
+                "lines_added": 1411586,
+                "commits": 2
+            }
+        },
+        "1701712453": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 24109,
+                "commits": 1
+            }
+        },
+        "1701712516": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 24109,
+                "commits": 2
+            }
+        },
+        "1701712573": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 48218,
+                "commits": 3
+            }
+        },
+        "1701852676": {
+            "gbiamgaurav": {
+                "lines_added": 3532,
+                "commits": 1
+            }
+        },
+        "1701852795": {
+            "Gaurav Bhattacharya": {
+                "lines_added": 0,
+                "commits": 1
+            }
+        },
+        "1701879094": {
+            "gbiamgaurav": {
+                "lines_added": 8851,
+                "commits": 2
+            }
+        },
+        "1701879138": {
+            "Gaurav Bhattacharya": {
+                "lines_added": 0,
+                "commits": 2
+            }
+        },
+        "1701908174": {
+            "zakhtar8": {
+                "lines_added": 0,
+                "commits": 1
+            }
+        },
+        "1701908289": {
+            "zakhtar8": {
+                "lines_added": 3227,
+                "commits": 2
+            }
+        },
+        "1701962173": {
+            "ShinYingChua": {
+                "lines_added": 3031,
+                "commits": 1
+            }
+        },
+        "1701962322": {
+            "ShinYingChua": {
+                "lines_added": 5198,
+                "commits": 2
+            }
+        },
+        "1701963091": {
+            "ShinYingChua": {
+                "lines_added": 5901,
+                "commits": 3
+            }
+        },
+        "1701985168": {
+            "KyawHtetPaingWin": {
+                "lines_added": 11489,
+                "commits": 1
+            }
+        },
+        "1702003437": {
+            "Miho Rosenberg": {
+                "lines_added": 1932,
+                "commits": 1
+            }
+        },
+        "1702012593": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 48218,
+                "commits": 4
+            }
+        },
+        "1702012648": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 48218,
+                "commits": 5
+            }
+        },
+        "1702012686": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 48218,
+                "commits": 6
+            }
+        },
+        "1702012829": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50262,
+                "commits": 7
+            }
+        },
+        "1702016665": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50331,
+                "commits": 8
+            }
+        },
+        "1702016735": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50331,
+                "commits": 9
+            }
+        },
+        "1702016792": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50400,
+                "commits": 10
+            }
+        },
+        "1702051982": {
+            "Miho Rosenberg": {
+                "lines_added": 1934,
+                "commits": 2
+            }
+        },
+        "1702053781": {
+            "Miho Rosenberg": {
+                "lines_added": 1935,
+                "commits": 3
+            }
+        },
+        "1702054392": {
+            "Miho Rosenberg": {
+                "lines_added": 1938,
+                "commits": 4
+            }
+        },
+        "1702057002": {
+            "Miho Rosenberg": {
+                "lines_added": 1941,
+                "commits": 5
+            }
+        },
+        "1702058284": {
+            "Rubz2018": {
+                "lines_added": 835,
+                "commits": 2
+            }
+        },
+        "1702058662": {
+            "Saadiabinte2023": {
+                "lines_added": 1419924,
+                "commits": 3
+            }
+        },
+        "1702058722": {
+            "Rubz2018": {
+                "lines_added": 868,
+                "commits": 3
+            }
+        },
+        "1702059135": {
+            "Saadiabinte2023": {
+                "lines_added": 1428385,
+                "commits": 4
+            }
+        },
+        "1702064116": {
+            "Saadiabinte2023": {
+                "lines_added": 1428385,
+                "commits": 5
+            }
+        },
+        "1702085284": {
+            "zakhtar8": {
+                "lines_added": 5153,
+                "commits": 3
+            }
+        },
+        "1702085426": {
+            "zakhtar8": {
+                "lines_added": 5161,
+                "commits": 4
+            }
+        },
+        "1702085507": {
+            "zakhtar8": {
+                "lines_added": 5330,
+                "commits": 5
+            }
+        },
+        "1702085690": {
+            "zakhtar8": {
+                "lines_added": 5344,
+                "commits": 6
+            }
+        },
+        "1702340194": {
+            "Miho Rosenberg": {
+                "lines_added": 1941,
+                "commits": 6
+            }
+        },
+        "1702340297": {
+            "Miho Rosenberg": {
+                "lines_added": 2100,
+                "commits": 7
+            }
+        },
+        "1702557889": {
+            "Swati": {
+                "lines_added": 4721,
+                "commits": 1
+            }
+        },
+        "1702558035": {
+            "Swati": {
+                "lines_added": 5316,
+                "commits": 2
+            }
+        },
+        "1702558376": {
+            "Swati": {
+                "lines_added": 5529,
+                "commits": 3
+            }
+        },
+        "1702594658": {
+            "zakhtar8": {
+                "lines_added": 5345,
+                "commits": 7
+            }
+        },
+        "1702600340": {
+            "Swati": {
+                "lines_added": 5530,
+                "commits": 4
+            }
+        },
+        "1702602524": {
+            "Swati": {
+                "lines_added": 5534,
+                "commits": 5
+            }
+        },
+        "1702626195": {
+            "Saadiabinte2023": {
+                "lines_added": 1428387,
+                "commits": 6
+            }
+        },
+        "1702626300": {
+            "Saadiabinte2023": {
+                "lines_added": 1428389,
+                "commits": 7
+            }
+        },
+        "1702626323": {
+            "Saadiabinte2023": {
+                "lines_added": 1428390,
+                "commits": 8
+            }
+        },
+        "1702626710": {
+            "Saadiabinte2023": {
+                "lines_added": 1428392,
+                "commits": 9
+            }
+        },
+        "1702637841": {
+            "Milan Waghmare": {
+                "lines_added": 73,
+                "commits": 1
+            }
+        },
+        "1702637850": {
+            "Milan Waghmare": {
+                "lines_added": 73,
+                "commits": 2
+            }
+        },
+        "1702643041": {
+            "Vijay Mamilla": {
+                "lines_added": 2,
+                "commits": 1
+            }
+        },
+        "1702644227": {
+            "zakhtar8": {
+                "lines_added": 5346,
+                "commits": 8
+            }
+        },
+        "1702649672": {
+            "Vijay Mamilla": {
+                "lines_added": 3,
+                "commits": 2
+            }
+        },
+        "1702649902": {
+            "Miho Rosenberg": {
+                "lines_added": 2105,
+                "commits": 8
+            }
+        },
+        "1702650034": {
+            "Miho Rosenberg": {
+                "lines_added": 2105,
+                "commits": 9
+            }
+        },
+        "1702652024": {
+            "ShinYingChua": {
+                "lines_added": 5935,
+                "commits": 4
+            }
+        },
+        "1702656246": {
+            "Miho Rosenberg": {
+                "lines_added": 2106,
+                "commits": 10
+            }
+        },
+        "1702656394": {
+            "Vijay Mamilla": {
+                "lines_added": 5,
+                "commits": 3
+            }
+        },
+        "1702657711": {
+            "Vijay Mamilla": {
+                "lines_added": 6,
+                "commits": 4
+            }
+        },
+        "1702657734": {
+            "Miho Rosenberg": {
+                "lines_added": 2107,
+                "commits": 11
+            }
+        },
+        "1702658258": {
+            "Miho Rosenberg": {
+                "lines_added": 9793,
+                "commits": 12
+            }
+        },
+        "1702658761": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50400,
+                "commits": 11
+            }
+        },
+        "1702659972": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50410,
+                "commits": 12
+            }
+        },
+        "1702660720": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50411,
+                "commits": 13
+            }
+        },
+        "1702660827": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50411,
+                "commits": 14
+            }
+        },
+        "1702661030": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50414,
+                "commits": 15
+            }
+        },
+        "1702661279": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50415,
+                "commits": 16
+            }
+        },
+        "1702662024": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50416,
+                "commits": 17
+            }
+        },
+        "1702662429": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50417,
+                "commits": 18
+            }
+        },
+        "1702662860": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50562,
+                "commits": 19
+            }
+        },
+        "1702669918": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50562,
+                "commits": 20
+            }
+        },
+        "1702669983": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50562,
+                "commits": 21
+            }
+        },
+        "1702670098": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50610,
+                "commits": 22
+            }
+        },
+        "1702671337": {
+            "Mohammad Shanawaz Anwar": {
+                "lines_added": 50614,
+                "commits": 23
+            }
+        }
+    }
+}
